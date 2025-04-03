@@ -1,7 +1,7 @@
 # Required parameters (must be specified)
-data_dir: "/work/pi_wenlongzhao_umass_edu/6/sudharshan/data/meta_math"
-datafile: "Transformed_hindi_math_train_s.csv"
-wandb_run_name: "hindi_math-v1-llama3B-10k"
+data_dir: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/commonsense_qa/"
+datafile: "Transformed_train.csv"
+wandb_run_name: "llama3B-commonsense_qa-64"
 
 # Model and data parameters (with defaults)
 model_path: "/datasets/ai/llama3/hub/models--meta-llama--Llama-3.2-3B/snapshots/13afe5124825b4f3751f836b40dafda64c1ed062"
@@ -9,7 +9,7 @@ model_path: "/datasets/ai/llama3/hub/models--meta-llama--Llama-3.2-3B/snapshots/
 split: "train"
 load_in_4bit: "False"
 max_seq_length: 2048
-dtype: "none"  # None for auto detection
+dtype: "torch.float16"  # None for auto detection
 
 # LoRA parameters
 lora_rank: 64
@@ -34,7 +34,7 @@ dataset_text_field: "Text"
 dataset_num_proc: 1
 packing: false
 # max_steps: 500
-num_train_epochs: 1
+num_train_epochs: 3
 per_device_train_batch_size: 16
 gradient_accumulation_steps: 4
 learning_rate: 5.0e-5

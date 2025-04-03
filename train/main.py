@@ -8,7 +8,7 @@ import yaml
 import os
 from datetime import datetime
 from peft import PeftConfig
-
+import torch
 
 def ArgParser():
 
@@ -39,7 +39,7 @@ def train():
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=args.model_path,
         max_seq_length=max_seq_length,
-        dtype=dtype,
+        dtype=torch.bfloat16,
         load_in_4bit=load_in_4bit,
     )
     model = FastLanguageModel.get_peft_model(
