@@ -1,7 +1,7 @@
 # Required parameters (must be specified)
-data_dir: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/commonsense_qa/"
+data_dir: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/imdb/"
 datafile: "Transformed_train.csv"
-wandb_run_name: "llama2B-commonsense_qa-64"
+wandb_run_name: "llama2B-imdb-64"
 
 # Model and data parameters (with defaults)
 model_path: "/datasets/ai/llama2/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9"
@@ -35,7 +35,7 @@ dataset_num_proc: 1
 packing: false
 # max_steps: 500
 num_train_epochs: 3
-per_device_train_batch_size: 16
+per_device_train_batch_size: 4
 gradient_accumulation_steps: 4
 learning_rate: 5.0e-5
 warmup_steps: 100

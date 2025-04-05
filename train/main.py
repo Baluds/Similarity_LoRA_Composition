@@ -34,7 +34,14 @@ def train():
     # Use 4bit quantization to reduce memory usage. Can be False.
     load_in_4bit = args.load_in_4bit
     data_dir = args.data_dir
+
+    if args.dataset_text_field != "false":
+        dataset_text_field = args.dataset_text_field
+    else:
+        dataset_text_field = "text"
+
     dataset = load_dataset(data_dir, data_files=args.datafile, split="train")
+    dataset = dataset.remove_columns([col for col in dataset.column_names if col != dataset_text_field])
 
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=args.model_path,
@@ -65,11 +72,6 @@ def train():
         else:
             print(
                 f"Warning: Adapter path {adapter_path} not found. Training from scratch.")
-
-    if args.dataset_text_field != "false":
-        dataset_text_field = args.dataset_text_field
-    else:
-        dataset_text_field = "text"
 
     current_time = datetime.now().strftime("%Y%m%d-%H%M%S")
     dataset_name = args.datafile.split(

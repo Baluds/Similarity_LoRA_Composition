@@ -4,7 +4,7 @@ import logging
 logger = logging.getLogger()
 
 def format_input(row, input_columns):
-    return "\n".join([row[ic] for ic in input_columns])
+    return "\n".join([str(row[col]) if pd.notna(row[col]) else "" for col in input_columns])
 
 
 class Transform_Data:
@@ -31,6 +31,54 @@ class Transform_Data:
             incited_response = 'Right Option'
             input_columns = ['question', 'CombinedOptions']
             output_columns = ['answerKey']
+        
+        if type == 'imdb':
+            prompt = "What is the sentiment of the below text?"
+            incited_response = 'Sentiment'
+            input_columns = ['text']
+            output_columns = ['name_label']
+
+        if type == 'squad':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ['context', 'question']
+            output_columns = ['answer']
+
+        if type == 'story_cloze':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ['prompt', 'options']
+            output_columns = ['chosen']
+
+        if type == 'piqa':
+            prompt = ""
+            incited_response = 'Right Answer'
+            input_columns = ['goal', 'options']
+            output_columns = ['label']
+
+        if type == 'sst2':
+            prompt = "What is the Sentiment of the below statment?"
+            incited_response = 'Answer'
+            input_columns = ['sentence']
+            output_columns = ['label']
+
+        if type == 'yelp':
+            prompt = "Please rate the sentiment of the following Yelp review on a scale from 1 (very negative) to 5 (very positive).\nReview:"
+            incited_response = 'Answer'
+            input_columns = ['statement']
+            output_columns = ['label']
+
+        if type == 'cosmos_qa':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ['context', 'question', 'options']
+            output_columns = ['label']
+
+        if type == 'paws':
+            prompt = "Are these two Sentence Paraphrases of each other?"
+            incited_response = 'Answer'
+            input_columns = ['sentence1', 'sentence2']
+            output_columns = ['label']
             
         return prompt, incited_response, input_columns, output_columns
  
@@ -44,12 +92,12 @@ class Transform_Data:
         if not test:
 
             try:
-
+                prompt_part = f"{prompt}\n" if prompt else ""
                 df["Text"] = df.apply(lambda row: (
-                    f"<|begin_of_text|>{prompt}\n"
+                    f"{prompt_part}"
                     f"{format_input(row, input_columns)}\n"
                     f"{incited_response}:\n"
-                    f"{row[output_columns[0]]}<|end_of_text|>"
+                    f"{row[output_columns[0]]}"
                 ), axis=1)
 
             except Exception as e:
@@ -58,9 +106,9 @@ class Transform_Data:
 
         else:
             try:
-
+                prompt_part = f"{prompt}\n" if prompt else ""
                 df["Text"] = df.apply(lambda row: (
-                    f"<|begin_of_text|>{prompt}\n"
+                    f"{prompt_part}"
                     f"{format_input(row, input_columns)}\n"
                     f"{incited_response}:\n"
                 ), axis=1)
