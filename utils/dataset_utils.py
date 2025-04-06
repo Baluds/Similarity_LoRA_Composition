@@ -3,8 +3,11 @@ import logging
 
 logger = logging.getLogger()
 
-def format_input(row, input_columns):
-    return "\n".join([str(row[col]) if pd.notna(row[col]) else "" for col in input_columns])
+def format_input(row, input_columns, input_texts):
+    if not input_texts:
+        return "\n".join([str(row[col]) if pd.notna(row[col]) else "" for col in input_columns])
+    else:
+        return "\n".join([input_texts[i] + str(row[col]) if pd.notna(row[col]) else "" for i, col in enumerate(input_columns)])
 
 
 class Transform_Data:
@@ -31,61 +34,119 @@ class Transform_Data:
             incited_response = 'Right Option'
             input_columns = ['question', 'CombinedOptions']
             output_columns = ['answerKey']
+            input_texts = []
         
         if type == 'imdb':
             prompt = "What is the sentiment of the below text?"
             incited_response = 'Sentiment'
             input_columns = ['text']
             output_columns = ['name_label']
+            input_texts = []
 
         if type == 'squad':
             prompt = ""
             incited_response = 'Answer'
             input_columns = ['context', 'question']
             output_columns = ['answer']
+            input_texts = []
 
         if type == 'story_cloze':
             prompt = ""
             incited_response = 'Answer'
             input_columns = ['prompt', 'options']
             output_columns = ['chosen']
+            input_texts = []
 
         if type == 'piqa':
             prompt = ""
             incited_response = 'Right Answer'
             input_columns = ['goal', 'options']
             output_columns = ['label']
+            input_texts = []
 
         if type == 'sst2':
             prompt = "What is the Sentiment of the below statment?"
             incited_response = 'Answer'
             input_columns = ['sentence']
             output_columns = ['label']
+            input_texts = []
 
         if type == 'yelp':
             prompt = "Please rate the sentiment of the following Yelp review on a scale from 1 (very negative) to 5 (very positive).\nReview:"
             incited_response = 'Answer'
             input_columns = ['statement']
             output_columns = ['label']
+            input_texts = []
 
         if type == 'cosmos_qa':
             prompt = ""
             incited_response = 'Answer'
             input_columns = ['context', 'question', 'options']
             output_columns = ['label']
+            input_texts = []
 
         if type == 'paws':
             prompt = "Are these two Sentence Paraphrases of each other?"
             incited_response = 'Answer'
             input_columns = ['sentence1', 'sentence2']
             output_columns = ['label']
+            input_texts = []
+
+        if type == 'qqp':
+            prompt = "Are these two Questions Paraphrases of each other?"
+            incited_response = 'Answer'
+            input_columns = ['question1', 'question2']
+            output_columns = ['label']
+            input_texts = []
             
-        return prompt, incited_response, input_columns, output_columns
+        if type == 'cb':
+            prompt = "Classify the relationship between a premise and a hypothesis as either entailment, contradiction, or neutral."
+            incited_response = 'Answer'
+            input_columns = ["premise","hypothesis"]
+            output_columns = ['label']
+            input_texts = ["Premise: ","Hypothesis: "]
+
+        if type == 'copa':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ["combinedOption"]
+            output_columns = ['label']
+            input_texts = []
+
+        if type == 'multirc':
+            prompt = "Answer the question based on the following paragraph."
+            incited_response = 'Is this answer correct? (Yes or No)'
+            input_columns = ["paragraph", "question", "answer"]
+            output_columns = ['label']
+            input_texts = ["Paragraph:\n", "Question:\n", "Answer:\n"]
+            
+        if type == 'record':
+            prompt = "Fill in the blank in the query using the passage."
+            incited_response = 'Answer'
+            input_columns = ["passage", "query"]
+            output_columns = ['answer']
+            input_texts = ["Passage:\n", "Query:\n"]
+
+        if type == 'rte':
+            prompt = "Classify the relationship between a premise and a hypothesis as either entailment, or not entailment."
+            incited_response = 'Answer'
+            input_columns = ["premise","hypothesis"]
+            output_columns = ['label']
+            input_texts = ["Premise: ","Hypothesis: "]
+
+        if type == 'wic':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ["question","sentence1", "sentence2"]
+            output_columns = ['label']
+            input_texts = ["","Sentence 1:\n", "Sentence 2:\n"]
+            
+        return prompt, incited_response, input_columns, output_columns, input_texts
  
     def transform(self, test):
         # this function assumes csv inputs
         df = pd.read_csv(self.input_file_path)
-        prompt, incited_response, input_columns, output_columns = self.type_to_prompt_mapper(self.type)
+        prompt, incited_response, input_columns, output_columns, input_texts = self.type_to_prompt_mapper(self.type)
         output_file_path = self.output_file_path+'Transformed_' + \
             self.input_file_path.split('/')[-1].split('.')[0]+'.csv'
 
@@ -95,7 +156,7 @@ class Transform_Data:
                 prompt_part = f"{prompt}\n" if prompt else ""
                 df["Text"] = df.apply(lambda row: (
                     f"{prompt_part}"
-                    f"{format_input(row, input_columns)}\n"
+                    f"{format_input(row, input_columns, input_texts)}\n"
                     f"{incited_response}:\n"
                     f"{row[output_columns[0]]}"
                 ), axis=1)
@@ -109,7 +170,7 @@ class Transform_Data:
                 prompt_part = f"{prompt}\n" if prompt else ""
                 df["Text"] = df.apply(lambda row: (
                     f"{prompt_part}"
-                    f"{format_input(row, input_columns)}\n"
+                    f"{format_input(row, input_columns, input_texts)}\n"
                     f"{incited_response}:\n"
                 ), axis=1)
 

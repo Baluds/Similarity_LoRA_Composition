@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=gpu-preempt
-#SBATCH --gpus=a100:1
-#SBATCH --time=8:00:00
+#SBATCH --gpus=l40s:1
+#SBATCH --time=24:00:00
 #SBATCH --job-name=IMDB-v1-r64       #Set the job name to "JobName"
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 4
