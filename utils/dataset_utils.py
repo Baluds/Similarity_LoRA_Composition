@@ -99,7 +99,7 @@ class Transform_Data:
             output_columns = ['label']
             input_texts = []
             
-        if type == 'cb':
+        if type == 'cb' or "anli" in type or type == "mnli":
             prompt = "Classify the relationship between a premise and a hypothesis as either entailment, contradiction, or neutral."
             incited_response = 'Answer'
             input_columns = ["premise","hypothesis"]
@@ -140,6 +140,48 @@ class Transform_Data:
             input_columns = ["question","sentence1", "sentence2"]
             output_columns = ['label']
             input_texts = ["","Sentence 1:\n", "Sentence 2:\n"]
+        
+        if type == 'wnli':
+            prompt = "Classify the relationship between  and a hypothesis as either entailment, or not entailment."
+            incited_response = 'Answer'
+            input_columns = ["text1","text2"]
+            output_columns = ['label_text']
+            input_texts = ["Premise: ","Hypothesis: "]
+        
+        if type == 'hellaswag':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ["ctx", "CombinedOptions"]
+            output_columns = ['label']
+            input_texts = []
+
+        if type == 'sentiment140':
+            prompt = "What is the Sentiment of the below tweet?"
+            incited_response = 'Answer'
+            input_columns = ["text"]
+            output_columns = ['sentiment']
+            input_texts = []
+        
+        if type == 'mrpc':
+            prompt = "Are these two Sentence equivalent?"
+            incited_response = 'Answer'
+            input_columns = ['sentence1', 'sentence2']
+            output_columns = ['label']
+            input_texts = ["Sentence 1: ", "Sentence 2: "]
+        
+        if type == 'obqa':
+            prompt = ""
+            incited_response = 'Answer'
+            input_columns = ['question_stem', 'CombinedOptions']
+            output_columns = ['answerKey']
+            input_texts = []
+        
+        if type == 'boolq':
+            prompt = "Answer the question based on the following paragraph."
+            incited_response = 'Answer'
+            input_columns = ["passage", "question"]
+            output_columns = ['answer']
+            input_texts = ["Paragraph:\n", "Question:\n"]
             
         return prompt, incited_response, input_columns, output_columns, input_texts
  
