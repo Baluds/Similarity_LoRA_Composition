@@ -2,3 +2,4 @@ utils
 wandb
 unsloth_compiled_cache
 slurm-*
+logs
