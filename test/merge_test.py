@@ -6,6 +6,7 @@ import torch
 from tqdm import tqdm
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from  vectorDB.test import weigh_datasets
 
 def load_config(config_path):
     with open(config_path, 'r') as f:
@@ -69,6 +70,7 @@ def main(config):
         ground_truth = str(row[ground_truth_column]).strip()
 
         # Hardcoded weights — update later if needed per row
+        # weights = weigh_datasets(temp=0.3,topK=5)
         weights = {name: 1.0 for name in adapter_names}
 
         sorted_adapters = sorted(weights.items(), key=lambda x: -x[1])

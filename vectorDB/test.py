@@ -6,11 +6,22 @@ import numpy as np
 
 #todo maake it top 100 and also from the list calculate percentage of similarity for each dataset
 
-def weigh_datasets(results, temp=1.0):
+def weigh_datasets(temp=1.0, topK=5):
     """
     Turn Chroma query results into dataset-level weights.
     Uses a softmax over (‑distance/temp) within the top‑k.
     """
+    client = chromadb.PersistentClient(path="./chroma_store") 
+    collection = client.get_or_create_collection("task_embeddings")
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    query_text ='''Don't waste your time. We had two different people come to our house to give us estimates for a deck (one of them the OWNER). Both times, we never heard from them. Not a call, not the estimate, nothing.'''
+    query_embedding = model.encode([query_text])  
+    query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
+
+    results = collection.query(
+        query_embeddings=query_embedding,
+        n_results=100  
+    )
     sims_by_ds = defaultdict(float)
 
     ids         = results["ids"][0]
@@ -30,21 +41,13 @@ def weigh_datasets(results, temp=1.0):
     weights = {ds: val / Z for ds, val in sims_by_ds.items()}
     weights_sorted = sorted(weights.items(), key=lambda x: x[1], reverse=True)
 
-    return weights_sorted
+    weights = {}
+    for ds, weight in weights_sorted:
+        key = ds  # format key to lowercase dataset name
+        weights[key] = weight   # optional: round for readability
 
-client = chromadb.PersistentClient(path="./chroma_store") 
-collection = client.get_or_create_collection("task_embeddings")
-model = SentenceTransformer("all-MiniLM-L6-v2")
-query_text ='''I was truly and wonderfully surprised at "O\' Brother, Where Art Thou?" The video store was out of all the movies I was planning on renting, so then I came across this. I came home and as I watched I became engrossed and found myself laughing out loud. The Coen\'s have made a magnificiant film again. But I think the first time you watch this movie, you get to know the characters. The second time, now that you know them, you laugh sooo hard it could hurt you. I strongly would reccomend ANYONE seeing this because if you are not, you are truly missing a film gem for the ages. 10/10'''
-query_embedding = model.encode([query_text])  
-query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
+    return weights
 
-results = collection.query(
-    query_embeddings=query_embedding,
-    n_results=100  
-)
-
-w = weigh_datasets(results, temp=0.5)
-for rank, (ds, weight) in enumerate(w, 1):
-    print(f"{rank:>2}. {ds:<15} {weight:.3f}")
+# w = weigh_datasets(temp=0.3,topK=6)
+# print(w)
 
