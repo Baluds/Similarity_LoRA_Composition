@@ -39,14 +39,12 @@ def weigh_datasets(temp=1.0, topK=5):
     # normalize by dividing by sum
     Z = sum(sims_by_ds.values())
     weights = {ds: val / Z for ds, val in sims_by_ds.items()}
-    weights_sorted = sorted(weights.items(), key=lambda x: x[1], reverse=True)
+    weights_sorted = sorted(weights.items(), key=lambda x: x[1], reverse=True)[:topK]
 
-    weights = {}
-    for ds, weight in weights_sorted:
-        key = ds  # format key to lowercase dataset name
-        weights[key] = weight   # optional: round for readability
+    Z_top = sum(w for _, w in weights_sorted)          # re-normalise
+    weights_top = {ds: w / Z_top for ds, w in weights_sorted}
 
-    return weights
+    return weights_top
 
 # w = weigh_datasets(temp=0.3,topK=6)
 # print(w)

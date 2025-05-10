@@ -6,7 +6,7 @@ import torch
 from tqdm import tqdm
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from  vectorDB.test import weigh_datasets
+from  vectorDB.retriever import weigh_datasets
 
 def load_config(config_path):
     with open(config_path, 'r') as f:
