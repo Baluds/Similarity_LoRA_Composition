@@ -1,0 +1,27 @@
+TASK_SPECS = [
+    
+    {"name": "CommonsenseQA",   "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/commonsense_qa/Transformed_train.csv")},
+    {"name": "PIQA",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/piqa/Transformed_train.csv")},
+    {"name": "COPA",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/copa/Transformed_train.csv")},
+    {"name": "CosmosQA",        "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/cosmos_qa/Transformed_train.csv")},
+    {"name": "record",          "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/record/Transformed_train.csv")},
+    {"name": "IMDB",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/imdb/Transformed_train.csv")},
+    {"name": "SST2",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/sst2/Transformed_train.csv")},
+    {"name": "YelpFull",        "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/yelp/Transformed_train.csv")},
+    {"name": "Sentiment140",    "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/sentiment140/Transformed_train.csv")}, 
+    {"name": "mrpc",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/mrpc/Transformed_train.csv")},
+    {"name": "multirc",         "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/multirc/Transformed_train.csv")},
+    {"name": "squad",           "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/squad/Transformed_train.csv")},
+    {"name": "BoolQ",           "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/boolq/Transformed_train.csv")},
+    {"name": "obqa",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/obqa/Transformed_train.csv")},
+    {"name": "PAWS",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/paws/Transformed_train.csv")},
+    {"name": "QQP",             "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/Transformed_train.csv")},
+    {"name": "RTE",             "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/rte/Transformed_train.csv")},
+    {"name": "CB",              "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/cb/Transformed_train.csv")},
+    {"name": "MNLI",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/mnli/Transformed_train.csv")},
+    {"name": "ANLI‑R3",         "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/anli_r3/Transformed_train.csv")},
+    {"name": "WNLI",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/wnli/Transformed_train.csv")},
+    {"name": "wic",             "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/wic/Transformed_train.csv")},
+    {"name": "hellaswag",       "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/hellaswag/Transformed_train.csv")},
+    {"name": "storyCloze",      "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/story_cloze/Transformed_train.csv")}
+]
