@@ -1,9 +1,10 @@
 import random
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 from sentence_transformers import SentenceTransformer
 import chromadb
 from taskSpecs import TASK_SPECS
 import numpy as np
+import pandas as pd
 
 client = chromadb.PersistentClient(path="./chroma_store") 
 collection = client.get_or_create_collection(name="task_embeddings",
@@ -18,12 +19,16 @@ def load_and_sample_data(task_specs, total_samples=2000, seed=42):
     random.seed(seed)
     sampled_data = []
     for spec in task_specs:
-        ds = load_dataset(*spec['load_args'])
+        name       = spec["name"]
+        csv_file   = spec["load_args"]
+        text_col   = "Text"
+        print(name)
+        df = pd.read_csv(csv_file)
+        ds = Dataset.from_pandas(df)
         take = min(2000, len(ds))
         ds_shuff = ds.shuffle(seed=seed).select(range(take))
-        for idx, example in enumerate(ds_shuff):
-            text = ds_shuff['text'][idx]
-            meta = {"dataset": spec['name']}
+        for text in ds_shuff[text_col]:
+            meta = {"dataset": name}
             meta["text"] = text  # store the text itself as metadata for reference
             sampled_data.append((text, meta))
     return sampled_data

@@ -47,13 +47,4 @@ results = collection.query(
 w = weigh_datasets(results, temp=0.5)
 for rank, (ds, weight) in enumerate(w, 1):
     print(f"{rank:>2}. {ds:<15} {weight:.3f}")
-print(sum(weight for _, weight in w))
 
-# print(weigh_datasets(results=results,temp=0.3))
-# for i in range(len(results["ids"][0])):
-#     print(f"Rank {i+1}:")
-#     print("ID:      ", results["ids"][0][i])
-#     print("Text:    ", results["metadatas"][0][i]["text"])
-#     print("Dataset: ", results["metadatas"][0][i]["dataset"])
-#     print("Distance:", results["distances"][0][i])
-#     print("-" * 40)
