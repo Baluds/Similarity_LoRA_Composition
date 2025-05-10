@@ -90,7 +90,13 @@ def main(config):
             temperature=0.7,
             prefix_allowed_tokens_fn=prefix_allowed_tokens_fn
         )
-        decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
+        prompt_length = inputs['input_ids'].shape[-1]
+
+        # Slice only the generated part (skip input prompt length)
+        generated_tokens = outputs[0][prompt_length:]
+
+        # Decode only the generated tokens
+        decoded_output = tokenizer.decode(generated_tokens, skip_special_tokens=True).strip()
         results.append(decoded_output)
 
         # Compare with ground truth

@@ -6,5 +6,5 @@ adapter_names:
 allowed_tokens:
   - True
   - False
-output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/boolq_cat.csv"
+output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/results/boolq_cat.csv"
 ground_truth_column: "answer"
