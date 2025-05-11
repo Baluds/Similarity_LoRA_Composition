@@ -15,7 +15,7 @@ TASK_SPECS = [
     {"name": "llama2B-boolq-64",           "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/boolq/Transformed_train.csv")},
     {"name": "llama2B-obqa-64",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/obqa/Transformed_train.csv")},
     {"name": "llama2B-paws-10k-64",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/paws/Transformed_train.csv")},
-    # {"name": "llama2B-qqp-64",             "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/Transformed_train.csv")},
+    {"name": "llama2B-qqp-100k-64",             "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/Transformed_train.csv")},
     {"name": "llama2B-rte-64",             "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/rte/Transformed_train.csv")},
     {"name": "llama2B-cb-64",              "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/cb/Transformed_train.csv")},
     {"name": "llama2B-mnli-64",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/mnli/Transformed_train.csv")},
