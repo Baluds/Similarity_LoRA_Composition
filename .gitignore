@@ -3,6 +3,6 @@ wandb
 unsloth_compiled_cache
 slurm-*
 logs
-vectorDB/chroma_store/*
-vectorDB/__pycache__/taskSpecs.cpython-310.pyc
-vectorDB/*
+test/vectorDB/chroma_store/*
+test/__pycache__
+test/vectorDB/__pycache__/*

@@ -6,7 +6,7 @@ import numpy as np
 
 #todo maake it top 100 and also from the list calculate percentage of similarity for each dataset
 
-def weigh_datasets(temp=1.0, topK=5):
+def weigh_datasets(query_text, temp=1.0, topK=5):
     """
     Turn Chroma query results into dataset-level weights.
     Uses a softmax over (‑distance/temp) within the top‑k.
@@ -14,7 +14,6 @@ def weigh_datasets(temp=1.0, topK=5):
     client = chromadb.PersistentClient(path="./chroma_store") 
     collection = client.get_or_create_collection("task_embeddings")
     model = SentenceTransformer("all-MiniLM-L6-v2")
-    query_text ='''Don't waste your time. We had two different people come to our house to give us estimates for a deck (one of them the OWNER). Both times, we never heard from them. Not a call, not the estimate, nothing.'''
     query_embedding = model.encode([query_text])  
     query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
 
