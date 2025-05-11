@@ -1,6 +1,6 @@
 base_model_path: "/datasets/ai/llama2/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9"
 adapter_dir: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/adapters"
-test_data_path: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/boolq/Transformed_test.csv"
+test_data_path: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/obqa/Transformed_test.csv"
 adapter_names:
   - llama2B-commonsense_qa-64
   - llama2B-piqa-64
@@ -24,7 +24,10 @@ adapter_names:
   - llama2B-hellaswag-64
   - llama2B-story_cloze-64
 allowed_tokens:
-  - True
-  - False
-output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/results/boolq_cat.csv"
-ground_truth_column: "answer"
+  - A
+  - B
+  - C
+  - D
+  
+output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/results/obqa_cat.csv"
+ground_truth_column: "answerKey"
