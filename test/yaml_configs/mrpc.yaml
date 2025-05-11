@@ -23,6 +23,7 @@ adapter_names:
   - llama2B-wic-64
   - llama2B-hellaswag-64
   - llama2B-story_cloze-64
+  - llama2B-qqp-100k-64
 allowed_tokens:
   - equivalent
   - not

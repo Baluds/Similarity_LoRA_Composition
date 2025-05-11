@@ -74,7 +74,7 @@ def main(config):
         # weights = {name: 1.0 for name in adapter_names}
 
         sorted_adapters = sorted(weights.items(), key=lambda x: -x[1])
-
+        print(sorted_adapters)
         model.add_weighted_adapter(
             adapters=[name for name, _ in sorted_adapters],
             weights=[w for _, w in sorted_adapters],

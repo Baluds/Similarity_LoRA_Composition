@@ -35,6 +35,10 @@ def load_and_sample_data(task_specs, total_samples=2000, seed=42):
 
 sampled_examples = load_and_sample_data(TASK_SPECS, total_samples=2000, seed=42)
 
+with open("outputnew.txt", "w") as f:
+    for item in sampled_examples:
+        f.write(str(item) + "\n")
+        
 texts = [text for text, meta in sampled_examples]
 metadatas = [meta for text, meta in sampled_examples]
 
