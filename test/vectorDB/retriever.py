@@ -11,7 +11,8 @@ def weigh_datasets(query_text, temp=1.0, topK=5):
     Turn Chroma query results into dataset-level weights.
     Uses a softmax over (‑distance/temp) within the top‑k.
     """
-    client = chromadb.PersistentClient(path="./chroma_store") 
+    print("started retrieving")
+    client = chromadb.PersistentClient(path="/home/sgovindan_umass_edu/Similarity_LoRA_Composition/test/vectorDB/chroma_store/") 
     collection = client.get_or_create_collection("task_embeddings")
     model = SentenceTransformer("all-MiniLM-L6-v2")
     query_embedding = model.encode([query_text])  
@@ -42,9 +43,16 @@ def weigh_datasets(query_text, temp=1.0, topK=5):
 
     Z_top = sum(w for _, w in weights_sorted)          # re-normalise
     weights_top = {ds: w / Z_top for ds, w in weights_sorted}
+    print(weights_top)
 
     return weights_top
 
-# w = weigh_datasets(temp=0.3,topK=6)
-# print(w)
+#For testing
+w = weigh_datasets('''Answer the question based on the following paragraph with True or False.
+Paragraph:
+All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.
+Question:
+does ethanol take more energy make that produces
+Answer:''',temp=0.3,topK=6)
+print(w)
 

@@ -6,7 +6,7 @@ from taskSpecs import TASK_SPECS
 import numpy as np
 import pandas as pd
 
-client = chromadb.PersistentClient(path="./chroma_store") 
+client = chromadb.PersistentClient(path="/home/sgovindan_umass_edu/Similarity_LoRA_Composition/test/vectorDB/chroma_store") 
 collection = client.get_or_create_collection(name="task_embeddings",
     metadata={"hnsw:space": "cosine"}
     )

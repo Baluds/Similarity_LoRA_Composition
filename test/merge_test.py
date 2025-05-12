@@ -68,7 +68,7 @@ def main(config):
     for idx, row in tqdm(df.iterrows(), total=len(df)):
         prompt = row['Text']
         ground_truth = str(row[ground_truth_column]).strip()
-
+        print(prompt)
         # Hardcoded weights — update later if needed per row
         weights = weigh_datasets(prompt, temp=0.3,topK=5)
         # weights = {name: 1.0 for name in adapter_names}
