@@ -70,7 +70,7 @@ def main(config):
         ground_truth = str(row[ground_truth_column]).strip()
         print(prompt)
         # Hardcoded weights — update later if needed per row
-        weights = weigh_datasets(prompt, temp=0.3,topK=5)
+        weights = weigh_datasets(prompt)
         # weights = {name: 1.0 for name in adapter_names}
 
         sorted_adapters = sorted(weights.items(), key=lambda x: -x[1])
