@@ -14,7 +14,7 @@ def weigh_datasets(query_text, top_p=0.9):
     print("started retrieving")
     client = chromadb.PersistentClient(path="/home/sgovindan_umass_edu/Similarity_LoRA_Composition/test/vectorDB/chroma_store/") 
     collection = client.get_or_create_collection("task_embeddings")
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     query_embedding = model.encode([query_text])  
     query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
 
