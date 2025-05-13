@@ -1,7 +1,7 @@
 # Required parameters (must be specified)
 data_dir: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/story_cloze/"
 datafile: "Transformed_train.csv"
-wandb_run_name: "llama2B-story_cloze-64"
+wandb_run_name: "llama2B-story_cloze-opt-64"
 
 # Model and data parameters (with defaults)
 model_path: "/datasets/ai/llama2/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9"

@@ -4,5 +4,10 @@ unsloth_compiled_cache
 slurm-*
 logs
 test/vectorDB/chroma_store/*
+test/vectorDB/chroma_store1/*
+test/vectorDB/chroma_store2/*
+test/vectorDB/chroma_store3/*
+test/vectorDB/chroma_store4/*
 test/__pycache__
 test/vectorDB/__pycache__/*
+test/vectorDB/outputnew.txt

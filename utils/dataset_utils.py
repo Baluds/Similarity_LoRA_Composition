@@ -54,7 +54,7 @@ class Transform_Data:
             prompt = ""
             incited_response = 'Answer'
             input_columns = ['prompt', 'options']
-            output_columns = ['chosen']
+            output_columns = ['correct_option']
             input_texts = []
 
         if type == 'piqa':

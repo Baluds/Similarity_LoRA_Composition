@@ -1,0 +1,34 @@
+base_model_path: "/datasets/ai/llama2/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9"
+adapter_dir: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/adapters"
+test_data_path: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/story_cloze/Transformed_test.csv"
+adapter_names:
+  - llama2B-commonsense_qa-64
+  - llama2B-piqa-64
+  - llama2B-copa-64
+  - llama2B-cosmos_qa-64
+  - llama2B-record-64
+  - llama2B-imdb-64
+  - llama2B-yelp-10k-64
+  - llama2B-mrpc-64
+  - llama2B-multirc-64
+  - llama2B-squad-64
+  - llama2B-boolq-64
+  - llama2B-obqa-64
+  - llama2B-paws-10k-64
+  - llama2B-rte-64
+  - llama2B-cb-64
+  - llama2B-mnli-64
+  - llama2B-anli_r3-64
+  - llama2B-wnli-64
+  - llama2B-wic-64
+  - llama2B-hellaswag-64
+  - llama2B-story_cloze-64
+  - llama2B-qqp-100k-64
+allowed_tokens:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/results/yelp_cat.csv"
+ground_truth_column: "label"
