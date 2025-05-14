@@ -3,9 +3,9 @@ from datasets import load_dataset
 dataset = load_dataset("nyu-mll/glue", cache_dir="/project/pi_wenlongzhao_umass_edu/6/sudharshan/data", name="mnli")
 train_dataset = dataset['train']
 train_df = train_dataset.to_pandas()
-test_matched_dataset = dataset['test_matched']
+test_matched_dataset = dataset['validation_matched']
 test_matched_df = test_matched_dataset.to_pandas()
-test_mismatched_dataset = dataset['test_mismatched']
+test_mismatched_dataset = dataset['validation_mismatched']
 test_mismatched_df = test_mismatched_dataset.to_pandas()
 output_file_path = "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/mnli/"
 

@@ -3,7 +3,7 @@ from datasets import load_dataset
 dataset = load_dataset("Rowan/hellaswag", cache_dir="/project/pi_wenlongzhao_umass_edu/6/sudharshan/data")
 train_dataset = dataset['train']
 train_df = train_dataset.to_pandas()
-test_dataset = dataset['test']
+test_dataset = dataset['validation']
 test_df = test_dataset.to_pandas()
 output_file_path = "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/hellaswag/"
 

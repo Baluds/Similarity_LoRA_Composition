@@ -25,10 +25,7 @@ adapter_names:
   - llama2B-story_cloze-64
   - llama2B-qqp-100k-64
 allowed_tokens:
-  - 0
-  - 1
-  - 2
-  - 3
-  - 4
-output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/results/yelp_cat.csv"
-ground_truth_column: "label"
+  - A
+  - B
+output_csv: "/project/pi_wenlongzhao_umass_edu/6/sudharshan/results/story_cloze_cat.csv"
+ground_truth_column: "correct_option"
