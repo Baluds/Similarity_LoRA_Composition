@@ -8,7 +8,6 @@ TASK_SPECS = [
     {"name": "llama2B-imdb-64",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/imdb/Transformed_train.csv")},
     # {"name": "llama2B-sst2-64",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/sst2/Transformed_train.csv")},
     {"name": "llama2B-yelp-10k-64",        "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/yelp/Transformed_train.csv")},
-    {"name": "llama2B-sentiment140-500k-64",    "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/sentiment140/Transformed_train.csv")}, 
     {"name": "llama2B-mrpc-64",            "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/mrpc/Transformed_train.csv")},
     {"name": "llama2B-multirc-64",         "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/multirc/Transformed_train.csv")},
     {"name": "llama2B-squad-64",           "load_args": ("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/squad/Transformed_train.csv")},
