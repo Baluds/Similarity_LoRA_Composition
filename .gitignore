@@ -8,6 +8,7 @@ test/vectorDB/chroma_store1/*
 test/vectorDB/chroma_store2/*
 test/vectorDB/chroma_store3/*
 test/vectorDB/chroma_store4/*
+test/vectorDB/chroma_store_new/*
 test/__pycache__
 test/vectorDB/__pycache__/*
 test/vectorDB/outputnew.txt

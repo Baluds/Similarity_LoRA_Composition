@@ -4,7 +4,7 @@ from collections import defaultdict
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
-client = chromadb.PersistentClient(path=f"/home/sgovindan_umass_edu/Similarity_LoRA_Composition/test/vectorDB/chroma_store1/") 
+client = chromadb.PersistentClient(path=f"/home/sgovindan_umass_edu/Similarity_LoRA_Composition/test/vectorDB/chroma_store_new/") 
 collection = client.get_or_create_collection("task_embeddings")
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 #todo maake it top 100 and also from the list calculate percentage of similarity for each dataset

@@ -1,6 +1,13 @@
 import pandas as pd
-train_df = pd.read_parquet("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/train-00000-of-00001.parquet")
-test_df = pd.read_parquet("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/test-00000-of-00001.parquet")
+from datasets import load_dataset
+
+dataset = load_dataset("nyu-mll/glue", cache_dir="/project/pi_wenlongzhao_umass_edu/6/sudharshan/data", name="qqp")
+train_dataset = dataset['train']
+train_df = train_dataset.to_pandas()
+test_dataset = dataset['validation']
+test_df = test_dataset.to_pandas()
+# train_df = pd.read_parquet("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/train-00000-of-00001.parquet")
+# test_df = pd.read_parquet("/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/validation.parquet")
 
 output_file_path = "/project/pi_wenlongzhao_umass_edu/6/sudharshan/data/qqp/"
 
