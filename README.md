@@ -10,15 +10,8 @@ This repo implements a **retrieve-then-compose framework** that stores 22 LoRA a
 
 > **Why?** This lets a frozen Llama-2-7B backbone generalise to unseen tasks _without_ extra training, while using ~3 × less GPU memory than multi-task fine-tuning.
 
-## 2 Setup (〈 5 min)
-```bash
-git clone https://github.com/<your-handle>/task-aware-lora.git
-cd task-aware-lora
-conda env create -f environment.yml   # or: pip install -r requirements.txt
-python demo.py --model llama2-7b --merge linear --top_p 0.9
-```
 
-## 3  Key Results (Llama-2-7B, 15 NLP Tasks)
+## 2  Key Results (Llama-2-7B, 15 NLP Tasks)
 
 | Task         | Best Dynamic Merge | Task specific Fine-tuned Adapter | Δ (points) |
 |--------------|-------------------|---------------------------|-----------|
@@ -32,7 +25,7 @@ python demo.py --model llama2-7b --merge linear --top_p 0.9
 
 ---
 
-## 4  Repository Layout
+## 3  Repository Layout
 
 ```text
 .
