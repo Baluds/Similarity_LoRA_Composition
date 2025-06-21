@@ -20,7 +20,7 @@ python demo.py --model llama2-7b --merge linear --top_p 0.9
 
 ## 3  Key Results (Llama-2-7B, 15 NLP Tasks)
 
-| Task         | Best Dynamic Merge | Oracle Fine-tuned Adapter | Δ (points) |
+| Task         | Best Dynamic Merge | Task specific Fine-tuned Adapter | Δ (points) |
 |--------------|-------------------|---------------------------|-----------|
 | **PIQA**        | Linear – **70.95** | 46.00 | **+24.95** |
 | **HellaSwag**   | Concatenation – **91.32** | 46.00 | **+45.32** |
